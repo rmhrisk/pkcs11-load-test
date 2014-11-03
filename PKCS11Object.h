@@ -39,16 +39,27 @@ class PKCS11Object
 public:
     PKCS11Object(void);
     ~PKCS11Object(void);
+
+    // Static factory method to interrogate a token for a particular object handle and return an appropriate instance.
     static PKCS11Object* Create(PKCS11Slot * slot, CK_OBJECT_HANDLE handle);
 
 public:
+
+    // Returns the CKA_CLASS object value
     CK_OBJECT_CLASS getClass();
+
+    // Returns the CKA_CLASS object value as a string
     string getClassString();
+
+    // Returns the object handle
     CK_OBJECT_HANDLE getHandle();
 
+    // Diagnostic method to dump all related attributes to this object
     virtual void DumpAttributes();
 
 protected:
+
+    // Causes the instance to read its related attributes from the token.
     virtual void QueryAttributes(PKCS11Slot * slot);
 
 protected:
@@ -62,9 +73,16 @@ public:
     PKCS11StorageObject(void);
     ~PKCS11StorageObject(void);
 
+    // Returns the CKA_TOKEN object value
     bool getIsToken();
+
+    // Returns the CKA_PRIVATE object value
     bool getIsPrivate();
+
+    // Returns the CKA_MODIFIABLE object value
     bool getIsModifiable();
+
+    // Returns the CKA_LABEL object value
     string getLabel();
 
 
@@ -87,8 +105,13 @@ public:
     PKCS11DataObject(void);
     ~PKCS11DataObject(void);
 
+    // Returns the CKA_APPLICATION object value
     string getApplication();
+
+    // Returns the CKA_OBJECT_ID object value
     char* getObjectId();
+
+    // Returns the CKA_VALUE object value
     char* getValue();
 
     string getObjectIdString();
@@ -114,9 +137,16 @@ public:
     PKCS11KeyObject(void);
     ~PKCS11KeyObject(void);
 
+    // Returns the CKA_KEY_TYPE object value
     CK_KEY_TYPE getKeyType();
+
+    // Returns the CKA_KEY_TYPE object value as a string
     string getKeyTypeString();
+
+    // Returns the CKA_ID object value
     char * getId();
+
+    // Returns the CKA_ID object value as a string
     string getIdString();
 
 protected:
@@ -137,7 +167,10 @@ public:
     PKCS11X509CertificateObject(void);
     ~PKCS11X509CertificateObject(void);
 
+    // Returns the CKA_SERIAL_NUMBER object value
     char* getSerial();
+
+    // Returns the CKA_SERIAL_NUMBER object value as a string
     string getSerialString();
 
 protected:
@@ -149,41 +182,3 @@ protected:
     int m_SerialLength;
 };
 
-
-/*
-class PKCS11PublicKeyObject : PKCS11Object
-{
-
-
-};
-
-class PKCS11PrivateKeyObject : PKCS11Object
-{
-
-
-};
-
-class PKCS11SecretKeyObject : PKCS11Object
-{
-
-
-};
-
-class PKCS11HWFeatureObject : PKCS11Object
-{
-  //CK_HW_FEATURE_TYPE m_Type;
-};
-
-class PKCS11DomainParametersObject : PKCS11Object
-{
-
-
-};
-
-
-class PKCS11MechanismObject : PKCS11Object
-{
-
-
-};
-*/

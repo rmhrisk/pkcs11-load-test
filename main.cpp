@@ -106,7 +106,7 @@ int _tmain(int argc, _TCHAR* argv[])
 
     // Process command-line arguments
 
-    if (_options.Parse(argc, argv)) {
+    if (!_options.Parse(argc, argv)) {
         DisplayUsage();
         return (EXIT_FAILURE);
     }
@@ -553,7 +553,7 @@ void DisplayUsage()
 {
     DisplayVersion();
 
-    cout << "Usage: " << _options.EXEName << "<-L library_path> <-P pin> [-C count] [-I interval] [-HD]" << endl << endl;
+    cout << "Usage: " << _options.EXEName << " <-L library_path> <-P pin> [-C count] [-I interval] [-HD]" << endl << endl;
     cout << "   L : Sets the library path" << endl;
     cout << "   P : Sets the USER pin used for the PKCS#11 Login" << endl;
     cout << "   C : Sets the maximum iteration count (defaults to 9999999)" << endl;

@@ -195,16 +195,16 @@ void PKCS11Slot::GenerateKeyPair() {
         CKM_RSA_PKCS_KEY_PAIR_GEN, NULL_PTR, 0
     };
 
-    CK_ULONG modulusBits = 1024;
+    CK_ULONG modulusBits = 2048;
     CK_BYTE publicExponent[] = { 1, 0, 1 };
-    CK_BYTE subject[] = "TestKey";
-    CK_BYTE id[] = {0xa1};
+    CK_BYTE label[] = "TestKey";
+    CK_BYTE id[] = { 0x01 };
 
     CK_BBOOL trueValue = CK_TRUE;
 
     CK_ATTRIBUTE publicKeyTemplate[] = {
         {CKA_ID, id, sizeof(id)},
-        {CKA_LABEL, subject, sizeof(subject)},
+        {CKA_LABEL, label, sizeof(label)},
         {CKA_TOKEN, &trueValue, sizeof(true)},
         {CKA_ENCRYPT, &trueValue, sizeof(true)},
         {CKA_VERIFY, &trueValue, sizeof(true)},
@@ -214,7 +214,7 @@ void PKCS11Slot::GenerateKeyPair() {
 
     CK_ATTRIBUTE privateKeyTemplate[] = {
         {CKA_ID, id, sizeof(id)},
-        {CKA_LABEL, subject, sizeof(subject)},
+        {CKA_LABEL, label, sizeof(label)},
         {CKA_TOKEN, &trueValue, sizeof(true)},
         {CKA_PRIVATE, &trueValue, sizeof(true)},
         {CKA_SENSITIVE, &trueValue, sizeof(true)},

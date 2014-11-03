@@ -38,6 +38,7 @@ public:
     Options();
     ~Options(void);
 
+    // Parse the command-line arguments into the Options instance
     bool Parse(int argc, _TCHAR* argv[]);
 
 public:

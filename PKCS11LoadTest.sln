@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PKCS11LoadTest", "PKCS11LoadTest.vcxproj", "{44BC66A7-3D88-4B85-BFB6-F8499FA59636}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{44BC66A7-3D88-4B85-BFB6-F8499FA59636}.Debug|Win32.ActiveCfg = Debug|Win32
+		{44BC66A7-3D88-4B85-BFB6-F8499FA59636}.Debug|Win32.Build.0 = Debug|Win32
+		{44BC66A7-3D88-4B85-BFB6-F8499FA59636}.Release|Win32.ActiveCfg = Release|Win32
+		{44BC66A7-3D88-4B85-BFB6-F8499FA59636}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

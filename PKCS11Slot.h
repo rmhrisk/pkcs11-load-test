@@ -46,8 +46,6 @@ typedef struct {
     bool hasRNG;
     bool isLoginRequired;
 
-    // Mechanisms
-
 } PKCS11Token;
 
 
@@ -57,23 +55,49 @@ public:
     PKCS11Slot(CK_FUNCTION_LIST * pPKCS11);
     ~PKCS11Slot(void);
 
+    // List all objects on a token
     void QueryObjects(vector<CK_OBJECT_HANDLE> * handles);
+
+    // List all objects on a token having the supplied attributes
     void QueryObjects(vector<CK_OBJECT_HANDLE> * handles, CK_ATTRIBUTE * attributes, CK_ULONG count);
+
+    // Return a set of defined attributes for a particular object 
     void QueryObject(CK_OBJECT_HANDLE handle, CK_ATTRIBUTE * attributes, CK_ULONG count);
+
+    // Interrogate basic information from the associated token.
     void QueryToken(PKCS11Token * token);
 
+    // Open a session to the token
     void OpenSession(bool rw);
+
+    // Close a session to the token
     void CloseSession();
+
+    // Log into the token using the USER pin
     void Login(string * pin);
+
+    // Log out of the token
     void Logout();
 
+    // UNUSED - Generate an RSA key-pair
     void GenerateKeyPair();
+
+    // Generate [length] bytes of random data from the token
     void GenerateRandom(char * buffer, int length);
+
+    // Generate a SHA-1 message digest for supplied data
     void GenerateDigest(const char * in, int inLength, char * out, int * outLength);
+
+    // Generate a signature for the supplied data using the specified key handle
     void GenerateSignature(int key, const char * in, int inLength, char * out, int * outLength);
-    bool VerifySignature(const char * in, int inlLength);
+
+    // Verify a supplied signature for the given data using the specified key
     bool VerifySignature(int key, const char * in, int inLength, char * signature, int signatureLength);
+
+    // Encrypt data using the specified public key
     void EncryptData(int key, const char * in, int inLength, char * out, int * outLength);
+
+    // Decrypt data using the specified private key
     void DecryptData(int key, const char * in, int inLength, char * out, int * outLength);
 
 public:

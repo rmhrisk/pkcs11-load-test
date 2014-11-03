@@ -36,6 +36,7 @@ public:
     PCSC(void);
     ~PCSC(void);
 
+    // Helper function to retrieve the GlobalPlatform CPLC IC Serial Number given a supplied reader name.
     static string QueryCPLC(string reader);
 };
 

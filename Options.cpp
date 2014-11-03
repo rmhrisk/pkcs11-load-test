@@ -11,7 +11,6 @@
 #define DEFAULT_MAX_ITERATIONS  9999999;
 #define DEFAULT_INTERVAL        1000;
 
-
 Options::Options()
 {
     // Set the default values
@@ -68,8 +67,9 @@ bool Options::Parse(int argc, _TCHAR* argv[])
             KeyIdLength = key.length() / 2;
 
             try {
+                memset(KeyId, 0, sizeof(KeyId));
                 Utility::HexStringToArray(KeyId, key.c_str(), KeyIdLength);
-                Log::debug("Setting the Key Identifier to %s\n", KeyId);
+                Log::debug("Setting the Key Identifier to %sh\n", key.c_str());
             }
             catch (...) {
                 Log::error("Invalid Key Identifier specified. aborting ...\n");

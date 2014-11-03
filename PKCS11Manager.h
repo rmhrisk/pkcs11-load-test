@@ -46,9 +46,12 @@ private:
 
 public:
     ~PKCS11Manager(void);
+
+    // Singleton creation / reference method.
     static PKCS11Manager* Create(LPCTSTR libraryPath);
     static void Destroy();
 
+    // List the available slots
     int QuerySlots(bool tokenPresent, vector<PKCS11Slot> * slots);
 
 public:
