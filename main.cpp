@@ -64,26 +64,45 @@ Options _options;
  * Function Prototypes
  */
 
+// Initialises the PKCS11 library and enumerates the available slots/tokens
 void Startup(vector<PKCS11Slot> * slots);
+
+// Process a single iteration of the transaction simulation against all available tokens
 void Process(vector<PKCS11Slot> * slots);
+
+// Reads the GlobalPlatform CPLC information via the PC/SC interface
+string Process_FindSerial(PKCS11Slot * slot);
+
+// Gets the Key object handle identifier for the PUBLIC key
+CK_OBJECT_HANDLE Process_FindPublicKey(PKCS11Slot * slot);
+
+// Gets the Key object handle identifier for the PRIVATE key
+CK_OBJECT_HANDLE Process_FindPrivateKey(PKCS11Slot * slot);
+
+// Release all application resources
 void Shutdown();
+
+// Handler for the atexit() call
 void Shutdown_AtExit();
-void AppendLogEntry();
+
+// Shows application version information on the command-line
 void DisplayVersion();
+
+// Shows application usage information on the command-line
 void DisplayUsage();
+
+// Writes to the token log file
 void AppendJournal( string serial, char * operation, bool outcome, char * data, int len);
+
 static BOOL WINAPI ConsoleCtrlHandler(DWORD dwCtrlType);
 
-string Process_FindSerial(PKCS11Slot * slot);
-CK_OBJECT_HANDLE Process_FindPublicKey(PKCS11Slot * slot);
-CK_OBJECT_HANDLE Process_FindPrivateKey(PKCS11Slot * slot);
 
 
 /*
  * Global application definitions
  */
 #define APP_NAME        "PKCS11 Load Test Tool"
-#define APP_VERSION     "V1.0.0"
+#define APP_VERSION     "V1.0.1"
 
 
 int _tmain(int argc, _TCHAR* argv[])
@@ -392,22 +411,6 @@ void Process(vector<PKCS11Slot> * slots) {
             slot->CloseSession();
             continue;
         }
-
-        /*
-         * UNUSED
-         */
-
-        //try {
-        //  Log::info(" - Generate KeyPair ...");
-        //  slot->GenerateKeyPair();
-        //  AppendJournal(serial, "GENERATEKEYPAIR", true, NULL, 0);
-        //  Log::info("Success\n");
-        //} catch (...) {
-        //  Log::info("Failed\n");
-        //  AppendJournal(serial, "GENERATEKEYPAIR", false, NULL, 0);
-        //  slot->CloseSession();
-        //  continue;
-        //}
 
         // Find Private Key [x]
         try {
