@@ -1,24 +1,10 @@
-#summary Instructions for using this tool
+------------------------------------------------------------------------------------
+PKCS#11 Load Test Tool
+------------------------------------------------------------------------------------
 
-= Introduction =
-
-Add your content here.
-
-
-= Details =
-
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
-
-
-
-
-
-#summary PKCS11 Load Test Tool
-
-= Overview =
+---------------------------
+OVERVIEW 
+---------------------------
 Many Government agencies and commercial organizations use PKI security tokens or 
 smartcards that utilize various proprietary token or smartcard PKI implementations and/or 
 openly accredited standards such as FIPS-201 (PIV).  
@@ -38,14 +24,14 @@ There are clearly many areas for issues in the channel above, and historically i
 difficult to find problems such as memory leaks at the various software and hardware 
 levels. There is also the potential that some smartcards or tokens may have issues that 
 may reduce the useful life of the tokens well below the stated MTBF. It is also possible 
-that the security tokens may fail due to â€˜false positivesâ€™ in their tamper prevention 
+that the security tokens may fail due to ‘false positives’ in their tamper prevention 
 mechanisms. Finally, it is useful to be able to test PKCS#11 implementations under 
 simulated load for performance purposes (i.e. against a HSM or Remote Desktop instance 
 via a LAN/WAN network).
 
 This simple test tool has therefore been developed to perform a common PKI cryptographic 
 use-case using the Cryptoki PKCS#11 API many times in quick succession, providing a 
-â€˜load testâ€™ environment that will validate or assist in identifying both integrity and 
+‘load test’ environment that will validate or assist in identifying both integrity and 
 performance issues by inducing failures quickly. 
 
 The test sits at the application level and as such exercises the entire channel other 
@@ -59,7 +45,7 @@ The test tool can support multiple USB connected smartcard readers and cards/tok
 most cards in 3 days of continuous testing. The tool is tested with up to 8 cards/readers 
 in the round robin.
 
-â€ƒ
+?
 ---------------------------
 SCOPE
 ---------------------------
@@ -70,7 +56,7 @@ are a simple subset of the total PKCS#11 functionality.
 
 	a.	Initialise a PKCS#11 library (using a configurable module path)
 	b.	Detect the presence of all PKCS#11 slots and list the available tokens.
-	c.	Read the GlobalPlatform CPLC Issuer Serial Number
+	c.	Read the GlobalPlatform CPLC IC Serial Number for each token using PC/SC
 	d.	Perform a series of typical transactions against all available tokens, [n] number 
 		of times.  
 		
@@ -126,9 +112,9 @@ a.	Microsoft Windows 7 or above (64-bit)
 OPERATION
 ---------------------------
 The test tool operates as a command-line executable, so familiarity with the DOS-style 
-command-prompt is recommended. By default, the test tool is named â€˜PKCS11LoadTest.exeâ€™.
+command-prompt is recommended. By default, the test tool is named ‘PKCS11LoadTest.exe’.
 The application has several command-line arguments that configure the behaviour of its 
-operation. To see a listing of these command-line parameters from within the application, including a description of each, run the executable with the â€˜-Hâ€™ parameter (for help).
+operation. To see a listing of these command-line parameters from within the application, including a description of each, run the executable with the ‘-H’ parameter (for help).
 
 The command-line parameters are as follow:
 
@@ -139,20 +125,20 @@ PARAMETER			DESCRIPTION
 -L					REQUIRED - The full or relative path to the PKCS#11 Library Module 
 					(See the PKCS#11 standard for more information).
 
-					Example: â€˜-L C:\Windows\System32\cmp11.dllâ€™
+					Example: ‘-L C:\Windows\System32\cmp11.dll’
 
 -P					REQUIRED - The ASCII/Numeric PIN number for the active tokens.
 					
-					Example: â€˜-P 11111111â€™
+					Example: ‘-P 11111111’
 
 -C					The number of simulated transactions to perform in this session.
 
-					Example: â€˜-C 10â€™
+					Example: ‘-C 10’
 					Default: 10
 
--I					The amount of time to wait between transactions in millisecondsâ€™
+-I					The amount of time to wait between transactions in milliseconds’
 
-					Example: â€˜-I 1000â€™.
+					Example: ‘-I 1000’.
 					Default: 1000 (1 second)
 
 -D					If specified, the application will produce verbose debug information 
@@ -166,11 +152,11 @@ PARAMETER			DESCRIPTION
 
 
 At a minimum, the PKCS11 module path, User PIN and Key identifier must be supplied, for 
-example: X:\PKCS11LoadTest.EXE â€“L cmp11.dll â€“P 11111111 â€“K 9C07
+example: X:\PKCS11LoadTest.EXE –L cmp11.dll –P 11111111 –K 9C07
 
 NOTES:
 a.	When running multiple cards in a "round robin" the PIN for all cards must be the same.
-b.	A separate â€˜.logâ€™ file will be created for each card, using the CPLC IC Serial Number 
+b.	A separate ‘.log’ file will be created for each card, using the CPLC IC Serial Number 
 	as the name. These will always be appended to so you will need to delete previous 
 	files manually if you wish to start from a clean file. 
 	
@@ -185,7 +171,7 @@ WARNING! 	Because this test tool cycles transactions very fast, if an incorrect 
 			to respond.  In some scenarios this may make the token un-recoverable due to 
 			excess failed PIN attempts or if the System Operator (SO) PIN cannot be 
 			obtained. 
-â€ƒ
+?
 
 
 ---------------------------
@@ -231,3 +217,15 @@ PCSC		http://pcscworkgroup.com/
 	
 	
 
+Hide details
+Change log
+r5 by kim.osullivan@gmail.com on Today (6 hours ago)   Diff
+[No log message]
+Go to: 	
+Double click a line to add a comment
+Older revisions
+ r2 by Kim.OSullivan@gmail.com on Yesterday (36 hours ago)   Diff 
+All revisions of this file
+File info
+Size: 9902 bytes, 219 lines
+View raw file
