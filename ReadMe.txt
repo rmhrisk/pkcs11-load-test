@@ -1,10 +1,24 @@
-------------------------------------------------------------------------------------
-PKCS#11 Load Test Tool
-------------------------------------------------------------------------------------
+#summary Instructions for using this tool
 
----------------------------
-OVERVIEW 
----------------------------
+= Introduction =
+
+Add your content here.
+
+
+= Details =
+
+Add your content here.  Format your content with:
+  * Text in *bold* or _italic_
+  * Headings, paragraphs, and lists
+  * Automatic links to other wiki pages
+
+
+
+
+
+#summary PKCS11 Load Test Tool
+
+= Overview =
 Many Government agencies and commercial organizations use PKI security tokens or 
 smartcards that utilize various proprietary token or smartcard PKI implementations and/or 
 openly accredited standards such as FIPS-201 (PIV).  
@@ -56,7 +70,7 @@ are a simple subset of the total PKCS#11 functionality.
 
 	a.	Initialise a PKCS#11 library (using a configurable module path)
 	b.	Detect the presence of all PKCS#11 slots and list the available tokens.
-	c.	Xxxxx  kim – insert get card CPLC etc
+	c.	Read the GlobalPlatform CPLC Issuer Serial Number
 	d.	Perform a series of typical transactions against all available tokens, [n] number 
 		of times.  
 		
